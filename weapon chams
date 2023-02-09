@@ -1,0 +1,13 @@
+if (weaponchams) {
+		  DWORD_PTR MyLocalplayer = driver.read<DWORD_PTR>(ModuleBase  + LocalPlayer);
+
+			DWORD64 ViewModelHandle = driver.read<DWORD64>(MyLocalplayer + m_hViewModels) & 0xFFFF; 
+			DWORD64 ViewModelPtr = driver.read<DWORD64>(ModuleBase  + cl_entitylist + ViewModelHandle * 0x20);
+
+			driver.write<int>(ViewModelPtr + 0x3C8, 1);
+			driver.write<int>(ViewModelPtr + 0x3D0, 2);
+			driver.write<glowMode>(ViewModelPtr + 0x2C4, { 101,104,46,0 });
+			driver.write<float>(ViewModelPtr + 0x1D0, 0.f);
+			driver.write<float>(ViewModelPtr + 0x1D4, 20.f);
+			driver.write<float>(ViewModelPtr + 0x1D8, 20.f);
+}
